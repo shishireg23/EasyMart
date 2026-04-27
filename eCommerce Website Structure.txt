@@ -1,0 +1,144 @@
+eCommerce Website Structure
+1️⃣ Frontend (React + Tailwind + shadcn)
+
+Pages:
+
+Home Page
+Product List Page
+Product Details Page
+Cart Page
+Checkout Page
+Order Tracking Page
+Admin Panel
+Example Folder Structure
+frontend
+ ├─ src
+ │  ├─ components
+ │  │   ├─ Navbar.jsx
+ │  │   ├─ ProductCard.jsx
+ │  │   ├─ CartItem.jsx
+ │  │
+ │  ├─ pages
+ │  │   ├─ Home.jsx
+ │  │   ├─ ProductDetails.jsx
+ │  │   ├─ Cart.jsx
+ │  │   ├─ Checkout.jsx
+ │  │   ├─ TrackOrder.jsx
+ │  │
+ │  ├─ context
+ │  │   ├─ CartContext.jsx
+ │  │
+ │  ├─ App.jsx
+ │  └─ main.jsx
+📦 Product Card Example (React)
+function ProductCard({product}) {
+  return (
+    <div className="border rounded-xl p-4 shadow">
+      <img src={product.image} className="w-full h-40 object-cover"/>
+      <h2 className="text-lg font-bold">{product.name}</h2>
+      <p className="text-red-500">৳ {product.price}</p>
+
+      <button className="bg-black text-white px-4 py-2 rounded mt-2">
+        Add to Cart
+      </button>
+    </div>
+  )
+}
+
+export default ProductCard
+
+
+
+
+
+
+
+
+
+
+Backend (Node + Express + MongoDB)
+Folder Structure
+backend
+ ├─ models
+ │   ├─ Product.js
+ │   ├─ Order.js
+ │
+ ├─ routes
+ │   ├─ productRoutes.js
+ │   ├─ orderRoutes.js
+ │
+ ├─ server.js
+📦 Product Model (MongoDB)
+const mongoose = require("mongoose")
+
+const productSchema = new mongoose.Schema({
+  name: String,
+  price: Number,
+  description: String,
+  image: String
+})
+
+module.exports = mongoose.model("Product", productSchema)
+🛒 Order Model
+const mongoose = require("mongoose")
+
+const orderSchema = new mongoose.Schema({
+  name: String,
+  phone: String,
+  address: String,
+  products: Array,
+  status: {
+    type: String,
+    default: "Pending"
+  }
+})
+
+module.exports = mongoose.model("Order", orderSchema)
+📡 Order API Example
+app.post("/api/order", async (req,res)=>{
+   const order = new Order(req.body)
+   await order.save()
+
+   res.json({
+      success:true,
+      message:"Order placed successfully"
+   })
+})
+📲 WhatsApp Order Notification
+
+Checkout করার পর:
+
+https://wa.me/8801XXXXXXXXX?text=New Order Received
+
+
+
+
+
+
+
+Admin Panel Features
+
+Admin Panel এ থাকবে:
+
+Add Product
+Edit Product
+Delete Product
+View Orders
+Change Order Status
+🚀 Deploy
+
+Website deploy করতে পারেন:
+
+Frontend
+
+Vercel
+Netlify
+
+Backend
+
+Render
+Railway
+
+Database
+
+MongoDB Atlas
